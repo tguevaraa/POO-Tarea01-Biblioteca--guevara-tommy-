@@ -1,13 +1,11 @@
-# Sistema de Gestión de Biblioteca Universitaria
-
-**Nombre completo del estudiante:** Tommy Leonardo Guevara Alvarado
-**Carrera y semestre:** Software - 4to. Semestre
-
-## Breve resumen de la estructura del caso de estudio (documentación)
-
-El caso de estudio documenta el ciclo completo de desarrollo orientado a objetos de un sistema básico para gestionar préstamos de libros, organizado en cuatro fases principales:
-
-1. **Requerimientos (Fase 1):** Análisis de la narrativa del problema para extraer los requerimientos funcionales mediante la identificación de sustantivos (posibles clases o atributos) y verbos (posibles métodos).
-2. **Análisis (Fase 2):** Aplicación del proceso de abstracción para definir los atributos esenciales y comportamientos de cada entidad (`Persona`, `Estudiante`, `Libro`, `Prestamo`, `Biblioteca`), descartando datos irrelevantes e identificando las relaciones entre ellas (herencia, asociación, agregación y composición).
-3. **Diseño (Fase 3):** Creación del diagrama de clases UML con base en las entidades abstraídas, definiendo visibilidad (pública, privada), relaciones y cardinalidades.
-4. **Desarrollo (Fase 4):** Transcripción de los diagramas UML a código ejecutable en Python, implementando los cuatro pilares de la POO (abstracción, encapsulamiento, herencia y polimorfismo) en una estructura modular de múltiples archivos.
+SISTEMA DE GESTIÓN DE BIBLIOTECA UNEMI
+-Nombre completo del estudiante:
+Darlyn Joshua Murillo Garcia
+-Carrera y semestre:
+Ingeniería De software - 4to Semestre
+El caso de estudio sigue una metodología de cuatro fases que guía el desarrollo de software desde la comprensión del problema hasta su implementación final.
+La primera fase. Requerimientos, consiste en analizar el enunciado del problema para identificar qué debe hacer el sistema. Aquí se detectan los actores involucrados, las funcionalidades necesarias y las restricciones existentes. Una técnica clave en esta etapa es distinguir sustantivos —que sugieren posibles clases y atributos— de verbos —que sugieren posibles métodos.
+La segunda fase. Análisis, profundiza en las entidades del sistema mediante un proceso de abstracción. Se definen cuáles son las clases principales, qué atributos las caracterizan y qué comportamientos deben tener. También se establecen las relaciones entre clases, como herencia, asociación, agregación y composición, lo que permite entender cómo interactúan los distintos componentes del sistema.
+La tercera fase. Diseño, plasma todo el análisis en un diagrama de clases UML. Este diagrama muestra de forma visual las clases con sus atributos, métodos y niveles de visibilidad (público, privado), así como las relaciones entre ellas. Sirve como plano arquitectónico antes de escribir una sola línea de código.
+La cuarta fase. Desarrollo, es la implementación en Python. Se traduce el diagrama UML a código funcional aplicando los cuatro pilares de la Programación Orientada a Objetos: la abstracción para modelar solo lo esencial, el encapsulamiento para proteger los datos, la herencia para reutilizar comportamiento entre clases, y el polimorfismo para que distintos objetos respondan de manera flexible a los mismos métodos.
+El sistema resultante permite gestionar una biblioteca universitaria, cubriendo funcionalidades como el registro de libros y estudiantes, el préstamo y devolución de materiales, y la consulta del estado de los préstamos activos.
