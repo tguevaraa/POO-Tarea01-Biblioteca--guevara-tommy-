@@ -1,94 +1,115 @@
 from modelo.libro import Libro
 from modelo.estudiante import Estudiante
 from modelo.biblioteca import Biblioteca
+from faker import Faker
 
-# El punto de entrada del programa
+fake = Faker("es_ES")
+
+
 def main():
-    # ─── Crear la biblioteca ───
+
     print("=" * 60)
     print("  SISTEMA DE GESTIÓN DE BIBLIOTECA UNEMI")
     print("=" * 60)
 
     biblioteca = Biblioteca("Biblioteca Central UNEMI")
-    print(f"\n{biblioteca}\n")
 
-    # ─── Registrar libros (RF-01) ───
+# ─── Generar libros ───
     print("── Registrando libros ──")
-    libro1 = Libro("978-0-13-468599-1", "El Principito", "Antoine de Saint-Exupéry")
-    libro2 = Libro("978-0-06-112008-4", "Cien Años de Soledad", "Gabriel García Márquez")
-    libro3 = Libro("978-84-376-0494-7", "Don Quijote de la Mancha", "Miguel de Cervantes")
+    libros = []
 
-    biblioteca.registrar_libro(libro1)
-    biblioteca.registrar_libro(libro2)
-    biblioteca.registrar_libro(libro3)
+    for _ in range(3):
+        libro = Libro(
+            str(fake.isbn13()),
+            fake.sentence(nb_words=3),
+            fake.name(),
+        )
+        libros.append(libro)
+        biblioteca.registrar_libro(libro)
 
-    # ─── Registrar estudiantes (RF-02) ───
+# ─── Generar estudiantes ───
     print("\n── Registrando estudiantes ──")
-    est1 = Estudiante("0926400615", "María", "López", "Ingeniería en Sistemas")
-    est2 = Estudiante("0912345678", "Carlos", "Ramírez", "Ingeniería Industrial")
+    estudiantes = []
 
-    biblioteca.registrar_estudiante(est1)
-    biblioteca.registrar_estudiante(est2)
+    for _ in range(3):
+        est = Estudiante(
+            str(fake.random_number(digits=9, fix_len=True)), 
+            fake.first_name(),
+            fake.last_name(),
+            fake.job()
+        )
+        estudiantes.append(est)
+        biblioteca.registrar_estudiante(est)
 
-    # ─── Estado actual ───
     print(f"\n{biblioteca}\n")
 
-    # ─── Realizar préstamos (RF-03 y RF-04) ───
-    print("── Realizando préstamos ──")
-    resultado = biblioteca.prestar_libro(
-        "978-0-13-468599-1", "0926400615", "2026-04-15", "2026-04-29"
-    )
-    print(resultado)
+# ─── Préstamos ───
+    print("\n── Realizando préstamos ──")
 
-    resultado = biblioteca.prestar_libro(
-        "978-0-06-112008-4", "0926400615", "2026-04-15", "2026-05-01"
-    )
-    print(resultado)
+    for i in range(3):
+        resultado = biblioteca.prestar_libro(
+            libros[i].isbn,
+            estudiantes[i].cedula,
+            fake.date(),
+            fake.date()
+        )
+        print(resultado)
 
-    resultado = biblioteca.prestar_libro(
-        "978-84-376-0494-7", "0912345678", "2026-04-15", "2026-04-22"
-    )
-    print(resultado)
-
-    # ─── Intentar prestar un libro ya prestado (RF-04: validación) ───
+# ─── Intentar prestar libro ya prestado ───
     print("\n── Intentando prestar libro ya prestado ──")
+
     resultado = biblioteca.prestar_libro(
-        "978-0-13-468599-1", "0912345678", "2026-04-16", "2026-04-30"
+        libros[0].isbn,
+        estudiantes[1].cedula,
+        fake.date(),
+        fake.date()
     )
     print(resultado)
 
-    # ─── Consultar préstamos activos (RF-06) ───
-    print("\n── Préstamos activos de María López ──")
-    prestamos_maria = biblioteca.consultar_prestamos_activos("0926400615")
-    for prestamo in prestamos_maria:
+# ─── Consultar préstamos ───
+    print(f"\n── Préstacmos activos de {estudiantes[0].nombre} ──")
+
+    prestamos_est = biblioteca.consultar_prestamos_activos(estudiantes[0].cedula)
+
+    for prestamo in prestamos_est:
         print(f"  → {prestamo}")
 
-    # ─── Devolver un libro (RF-05) ───
+# ─── Devolver ───
     print("\n── Devolviendo un libro ──")
-    resultado = biblioteca.devolver_libro("978-0-13-468599-1", "0926400615")
+
+    resultado = biblioteca.devolver_libro(
+        libros[0].isbn,
+        estudiantes[0].cedula
+    )
     print(resultado)
 
-    # ─── Verificar que el libro está disponible nuevamente ───
+# ─── Estado del libro ───
     print(f"\n── Estado del libro devuelto ──")
-    print(f"  {libro1}")
+    print(f"  {libros[0]}")
 
-    # ─── Consultar préstamos activos después de devolución ───
-    print("\n── Préstamos activos de María López (después de devolución) ──")
-    prestamos_maria = biblioteca.consultar_prestamos_activos("0926400615")
-    if prestamos_maria:
-        for prestamo in prestamos_maria:
+# ─── Consultar después ───
+    print(f"\n── Préstamos activos de {estudiantes[0].nombre} (después de devolución) ──")
+
+    prestamos_est = biblioteca.consultar_prestamos_activos(estudiantes[0].cedula)
+
+    if prestamos_est:
+        for prestamo in prestamos_est:
             print(f"  → {prestamo}")
     else:
         print("  (Sin préstamos activos)")
 
-    # ─── Ahora el libro puede prestarse de nuevo ───
+# ─── Prestar otra vez ───
     print("\n── Prestando el libro devuelto a otro estudiante ──")
+
     resultado = biblioteca.prestar_libro(
-        "978-0-13-468599-1", "0912345678", "2026-04-16", "2026-04-30"
+        libros[0].isbn,
+        estudiantes[1].cedula,
+        fake.date(),
+        fake.date()
     )
     print(resultado)
 
-    # ─── Estado final ───
+# ─── Estado final ───
     print(f"\n{'=' * 60}")
     print(f"  {biblioteca}")
     print(f"{'=' * 60}")
