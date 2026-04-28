@@ -2,7 +2,7 @@ from modelo.libro import Libro
 from modelo.estudiante import Estudiante
 from modelo.biblioteca import Biblioteca
 
-
+# El punto de entrada del programa, donde se simulan las operaciones de la biblioteca
 def main():
     # ─── Crear la biblioteca ───
     print("=" * 60)
