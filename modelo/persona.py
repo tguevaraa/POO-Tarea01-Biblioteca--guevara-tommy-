@@ -1,3 +1,5 @@
+# :D
+
 class Persona:
     """Clase base que representa a una persona."""
 

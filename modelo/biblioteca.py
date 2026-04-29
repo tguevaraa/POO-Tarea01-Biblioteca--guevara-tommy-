@@ -1,7 +1,7 @@
 from modelo.libro import Libro
 from modelo.estudiante import Estudiante
 from modelo.prestamo import Prestamo
-
+# :D
 
 class Biblioteca:
     """Gestiona libros, estudiantes y préstamos."""

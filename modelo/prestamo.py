@@ -1,5 +1,6 @@
 from modelo.libro import Libro
 from modelo.estudiante import Estudiante
+# :D
 
 
 class Prestamo:

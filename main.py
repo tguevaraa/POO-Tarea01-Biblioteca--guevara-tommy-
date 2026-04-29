@@ -1,6 +1,6 @@
-from modelo.libro import Libro
-from modelo.estudiante import Estudiante
-from modelo.biblioteca import Biblioteca
+from aaaaa.mod.modelo.libro import Libro
+from aaaaa.mod.modelo.estudiante import Estudiante
+from aaaaa.mod.modelo.biblioteca import Biblioteca
 from faker import Faker
 
 fake = Faker("es_ES")

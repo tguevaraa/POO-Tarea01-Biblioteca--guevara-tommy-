@@ -1,3 +1,5 @@
+# :D
+
 class Libro:
     """Representa un libro de la biblioteca."""
 
