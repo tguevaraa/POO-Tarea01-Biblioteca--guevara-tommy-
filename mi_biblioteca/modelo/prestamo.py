@@ -1,6 +1,6 @@
 from modelo.libro import Libro
 from modelo.estudiante import Estudiante
-
+""
 
 class Prestamo:
     """Representa un préstamo de un libro a un estudiante."""
