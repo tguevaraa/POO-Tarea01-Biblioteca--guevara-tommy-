@@ -67,7 +67,7 @@ def main():
     print("\n── Devolviendo un libro ──")
     resultado = biblioteca.devolver_libro("978-0-13-468599-1", "0926400615")
     print(resultado)
-
+#:)
     # ─── Verificar que el libro está disponible nuevamente ───
     print(f"\n── Estado del libro devuelto ──")
     print(f"  {libro1}")
