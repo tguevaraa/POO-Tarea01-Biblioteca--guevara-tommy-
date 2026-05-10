@@ -1,3 +1,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Ignorar repositorios anidados
+caso_02/.git/
+Curso-Programacion-Orientado-Objetos-UNEMI/.git/
